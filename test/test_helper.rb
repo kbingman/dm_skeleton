@@ -7,13 +7,15 @@ require "contest"
 require "override"
 require "quietbacktrace"
 
+DataMapper.setup(:default, "sqlite3::memory:")
+
 class Test::Unit::TestCase
   include Rack::Test::Methods
-
+  
   def setup
     # Uncomment if you want to reset the database
     # before each test.
-    # Ohm.flush
+    DataMapper.auto_migrate!
   end
 
   def app

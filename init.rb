@@ -9,17 +9,23 @@ rescue LoadError
 end
 
 require "monk/glue"
-require "ohm"
 require "haml"
 require "sass"
 
+require 'dm-core'
+require 'dm-timestamps'
+require 'dm-validations'
+require 'dm-aggregates'
+
 class Main < Monk::Glue
   set :app_file, __FILE__
-  use Rack::Session::Cookie
+  # uncomment to use the session
+  # use Rack::Session::Cookie
 end
 
-# Connect to redis database.
-Ohm.connect(settings(:redis))
+# Connect to datamapper database.
+# The ENV call is for Heroku.
+DataMapper::setup(:default, ENV['DATABASE_URL'] || settings(:datamapper))
 
 # Load all application files.
 Dir[root_path("app/**/*.rb")].each do |file|

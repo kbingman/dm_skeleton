@@ -1,14 +1,16 @@
 defaults: &defaults
-  :redis:
-    :port: 6379
+  :datamapper:
+    :adapter:  sqlite3
+    :database: db/development.sqlite3
 
 :development:
   <<: *defaults
 
 :test:
   <<: *defaults
-  :redis:
-    :port: 6380
 
 :production:
   <<: *defaults
+  :datamapper:
+    :adapter:  sqlite3
+    :database: db/production.sqlite3

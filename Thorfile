@@ -6,7 +6,7 @@ class Monk < Thor
   desc "test", "Run all the tests"
   def test
     verify "config/settings.example.yml"
-    verify "config/redis/test.example.conf"
+    # verify "config/redis/test.example.conf"
 
     $:.unshift File.join(File.dirname(__FILE__), "test")
 
@@ -18,7 +18,7 @@ class Monk < Thor
   desc "start ENV", "Start Monk in the supplied environment"
   def start(env = ENV["RACK_ENV"] || "development")
     verify "config/settings.example.yml"
-    verify "config/redis/#{env}.example.conf"
+    # verify "config/redis/#{env}.example.conf"
     exec "env RACK_ENV=#{env} ruby init.rb"
   end
 
@@ -33,20 +33,32 @@ class Monk < Thor
     copy_example(example) unless File.exists?(target_file_for(example))
   end
 
-private
-
-
-  def self.source_root
-    File.dirname(__FILE__)
+   desc 'migrate', 'Auto-migrate the database (destroys data)'  
+   def migrate 
+     require 'init'
+     DataMapper.auto_migrate!
+   end
+  
+  desc "upgrade", 'Auto-upgrade the database (preserves data)'
+  def upgrade 
+    require 'init'
+    DataMapper.auto_upgrade!
   end
+  
+  private
 
-  def confirm_copy_file(source, target)
-    if yes?("Do you want to copy the file #{source} to #{target}? [yn]")
-      copy_file(source, target)
+    def self.source_root
+      File.dirname(__FILE__)
     end
-  end
-
-  def target_file_for(example_file)
-    example_file.sub(".example", "")
-  end
+  
+    def confirm_copy_file(source, target)
+      if yes?("Do you want to copy the file #{source} to #{target}? [yn]")
+        copy_file(source, target)
+      end
+    end
+  
+    def target_file_for(example_file)
+      example_file.sub(".example", "")
+    end
+  
 end

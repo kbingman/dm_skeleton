@@ -3,7 +3,12 @@ dependencies 0.0.6 git://github.com/djanowski/dependencies.git
 faker 0.3.1 git://github.com/yyyc514/faker.git
 haml 2.2.2 git://github.com/nex3/haml.git
 monk-glue git://github.com/monkrb/glue.git
-ohm 0.0.15 git://github.com/soveran/ohm.git
+
+dm-core 0.9.11 git://github.com/datamapper/dm-core.git
+dm-timestamps 0.9.11
+dm-validations 0.9.11
+dm-aggregates 0.9.11
+
 override 0.0.10 (test) git://github.com/soveran/override.git
 quietbacktrace 0.1.1 git://github.com/thoughtbot/quietbacktrace.git
 rack 1.0.0 git://github.com/rack/rack.git
