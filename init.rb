@@ -20,7 +20,7 @@ require 'dm-aggregates'
 class Main < Monk::Glue
   set :app_file, __FILE__
   # uncomment to use the session
-  # use Rack::Session::Cookie
+  use Rack::Session::Cookie
 end
 
 # Connect to datamapper database.
