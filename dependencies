@@ -1,10 +1,12 @@
 contest 0.1.2 (test) git://github.com/citrusbyte/contest.git
 dependencies 0.0.6 git://github.com/djanowski/dependencies.git
 faker 0.3.1 git://github.com/yyyc514/faker.git
-haml 2.2.3 git://github.com/nex3/haml.git
+haml 2.2.2 git://github.com/nex3/haml.git
 monk-glue git://github.com/monkrb/glue.git
 dm-core 0.9.11 git://github.com/datamapper/dm-core.git
-dm-more 0.9.11 git://github.com/datamapper/dm-more.git
+dm-timestamps 0.9.11
+dm-validations 0.9.11
+dm-aggregates 0.9.11
 do_sqlite3 0.9.11 git://github.com/datamapper/do.git 
 override 0.0.10 (test) git://github.com/soveran/override.git
 quietbacktrace 0.1.1 git://github.com/thoughtbot/quietbacktrace.git
