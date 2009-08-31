@@ -1,6 +1,4 @@
 /config/settings.yml
-/config/redis/development.conf
-/config/redis/test.conf
 /db/*.sqlite3
 /db/*.db
 /log
