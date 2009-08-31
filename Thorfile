@@ -2,6 +2,22 @@ class Monk < Thor
   namespace :monk
 
   include Thor::Actions
+  
+  desc "migrate", "Migrate DataMapper"
+  def migrate(env = ENV['RACK_ENV'] || "development")
+    ENV['RACK_ENV'] = env
+    verify "config/settings.example.yml"
+    require "init"
+    DataMapper.auto_migrate!
+  end
+
+  desc "upgrade", "Upgrade DataMapper"
+  def upgrade(env = ENV['RACK_ENV'] || "development")
+    ENV['RACK_ENV'] = env
+    verify "config/settings.example.yml"
+    require "init"
+    DataMapper.auto_upgrade!
+  end
 
   desc "test", "Run all the tests"
   def test
@@ -31,18 +47,6 @@ class Monk < Thor
   desc "verify EXAMPLE_FILE", "Verifies that the corresponding file exists for the supplied example file"
   def verify(example)
     copy_example(example) unless File.exists?(target_file_for(example))
-  end
-
-   desc 'migrate', 'Auto-migrate the database (destroys data)'  
-   def migrate 
-     require 'init'
-     DataMapper.auto_migrate!
-   end
-  
-  desc "upgrade", 'Auto-upgrade the database (preserves data)'
-  def upgrade 
-    require 'init'
-    DataMapper.auto_upgrade!
   end
   
   private

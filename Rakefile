@@ -9,7 +9,7 @@ namespace :db do
   desc 'Auto-migrate the database (destroys data)'
   task :migrate do
     exec "thor monk:migrate"
-
+  end
   desc 'Auto-upgrade the database (preserves data)'
   task :upgrade do
     exec "thor monk:upgrade"
